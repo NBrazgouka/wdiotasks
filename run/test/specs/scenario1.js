@@ -6,31 +6,31 @@ describe('Scenario1', () => {
     });
 
     it('should click Apple cinema 30" item', async () => {
-        const link = await $ ('=Apple Cinema 30"');
+        const link = await $('=Apple Cinema 30"');
         await link.click();
     });
 
     it('should select Medium in radio option', async () => {
-        const radioButton = await $ ('//div[@id = "input-option218"]//input[@value = 6]');
+        const radioButton = await $('//div[@id = "input-option218"]//input[@value = 6]');
         await radioButton.click();
     });
 
     it('should select checkbox 2, 4 in Checkbox option', async () => {
-        const checkbox2 = await $ ('//div[@id = "input-option223"]//input[@value = 9]');
+        const checkbox2 = await $('//div[@id = "input-option223"]//input[@value = 9]');
         await checkbox2.click();
-        const checkbox4 = await $ ('//div[@id = "input-option223"]//input[@value = 11]');
+        const checkbox4 = await $('//div[@id = "input-option223"]//input[@value = 11]');
         await checkbox4.click();
     });
 
     it ('should paste short quote in Text option', async () => {
-        const textInput = await $ ('#input-option208');
+        const textInput = await $('#input-option208');
         await textInput.setValue('Short quote is added');
     });
 
     it ('should select Green option in Select dropdown', async () => {
-        const selectDropdown = await $ ('#input-option217');
+        const selectDropdown = await $('#input-option217');
         await selectDropdown.click();
-        const greenValue = await $ ('//select[@id = "input-option217"]//option[@value = 1]');
+        const greenValue = await $('//select[@id = "input-option217"]//option[@value = 1]');
         await greenValue.click();
     });
 
@@ -65,9 +65,9 @@ describe('Scenario1', () => {
     });
 
     it ('should assert that VAT 20% is calculated correctly', async () => {
-        const subTotalValue = await $ ('#content > div.row > div > table > tbody > tr:nth-child(1) > td:nth-child(1) > strong');
-        const VATValue = await $ ('#content > div.row > div > table > tbody > tr:nth-child(2) > td:nth-child(1)');
-        await VATValue.isEqual(subTotalValue*0.20);
+        const subTotalValue = await $('#content > div.row > div > table > tbody > tr:nth-child(1) > td:nth-child(1) > strong');
+        const vatValue = await $('#content > div.row > div > table > tbody > tr:nth-child(2) > td:nth-child(1)');
+        await vatValue.isEqual(subTotalValue * 0.20);
     });
 
     it ('should close the browser', async () => {
