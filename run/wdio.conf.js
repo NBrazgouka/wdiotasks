@@ -21,11 +21,11 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/scenario2.js'
+        './test/specs/**/scenario1.js'
     ],
     // Patterns to exclude.
     exclude: [
-        './test/specs/**/scenario1.js'
+        './test/specs/**/scenario2.js'
     ],
     //
     // ============
@@ -94,7 +94,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://localhost',
+    baseUrl: 'https://awesome-shop.ru/',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -110,7 +110,14 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'],
+    services: [
+        ['chromedriver', 
+        {
+        logFileName: 'wdio-chromedriver.log', // default
+        outputDir: 'driver-logs', // overwrites the config.outputDir
+        args: ['--silent'],
+        chromedriverCustomPath: 'C:\\Users\\Nadzeya_Brazgouka\\Desktop\\Docs\\LEARN\\Automation\\WebDriverIO\\chromedriver_win32\\chromedriver.exe'
+    }]],
     
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber

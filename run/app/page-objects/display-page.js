@@ -1,0 +1,69 @@
+const Page = require('./page');
+
+class DisplayPage extends Page {
+
+    get openDisplay() {
+        return $('=Apple Cinema 30"');
+    } 
+
+    get radioOption() {
+        return $('//div[@id = "input-option218"]//input[@value = 6]');
+    }
+
+    get checkboxOption2() {
+        return $('//div[@id = "input-option223"]//input[@value = 9]');
+    }
+
+    get checkboxOption4() {
+        return $('//div[@id = "input-option223"]//input[@value = 11]');
+    }
+    
+    get shortTextInput() {
+        return $('#input-option208');
+    }
+
+    get openDropdown() {
+        return $('#input-option217');
+    }
+
+    get dropdownValue() {
+        return $('//select[@id = "input-option217"]//option[@value = 1]');
+    }
+
+    get longTextInput() {
+        return $('#input-option209');
+    }
+
+    open() {
+        return super.open('/');
+    }
+
+    async openDisplayPage() {
+        await this.openDisplay.click();
+    } 
+
+    async selectRadioOption() {
+        await this.radioOption.click();
+    }
+
+    async selectCheckboxOptions() {
+        await this.checkboxOption2.click();
+        await this.checkboxOption4.click();
+    }
+
+    async pastShortText(value) {
+        await this.shortTextInput.setValue(value);
+    }
+
+    async selectDropdownOption() {
+        await this.openDropdown.click();
+        await this.dropdownValue.click();
+    }
+
+    async pastLongText(value) {
+        await this.longTextInput.setValue(value);
+    }
+
+}
+
+module.exports = new DisplayPage();

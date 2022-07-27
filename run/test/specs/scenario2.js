@@ -1,59 +1,41 @@
-describe('Scenario2', () => {
+const Page = require('../../app/page-objects/page');
+const LoginPage = require('../../app/page-objects/login-page');
+const ProductPage = require('../../app/page-objects/product-page');
+const PhonePage = require('../../app/page-objects/phone-page');
+
+describe('Scenario1', () => {
 
     it('should open awesome-shop site', async () => {
-       await browser.url(`https://awesome-shop.ru/`);
+       await Page.open();
        browser.maximizeWindow();
     });
 
     it('should let user log in', async () => {
-      const loginDropdown = await $('.acc-section');
-      await loginDropdown.click();
-      const linkLogin = await $('=Login');
-      await linkLogin.click();
-      const emailInput = await $('#input-email');
-      await emailInput.setValue('5768862@gmail.com');
-      const passwordInput = await $('#input-password');
-      await passwordInput.setValue('159753');
-      const loginButton = await $('#content > div > div:nth-child(2) > div > form > input');
-      await loginButton.click();
+       await LoginPage.loginUser('5768862@gmail.com', '159753');
     });
 
     it ('should return to home page', async () => {
-        await browser.url(`https://awesome-shop.ru/`);
+        await Page.open();
     });
 
     it ('should click iPhone item', async () => {
-        const iPhoneLink = await $('=iPhone');
-        await iPhoneLink.click();
+        await PhonePage.openPhonePage();
     });
 
     it ('should add to Cart 7 phones', async () => {
-        const quantityInput = await $('#input-quantity');
-        await quantityInput.setValue('7');
-        const addToCartButton = await $('#button-cart');
-        await addToCartButton.click();
+        await ProductPage.addQuantityToCart('7');
     });
 
-    it ('should click Shopping cart icon at the top of the page', async () => {
-        const shoppingCartIcon = await $('#cart-total');
-        await shoppingCartIcon.click();
-    });
-
-    it ('should click View cart button', async () => {
-        const viewCartButton = await $('//a[@class="btn btn-block btn-default"]');
-        await viewCartButton.click();
+    it ('should open cart', async () => {
+        await ProductPage.viewCart();
     });
 
     it ('should open toggle Use Coupon Code', async () => {
-        const couponToggle = await $('#accordion a.accordion-toggle[href*="#collapse-coupon"]');
-        await couponToggle.click();
+        await PhonePage.openCouponToggle();
     });
 
     it ('should apply coupon LuckyUser', async () => {
-        const couponInput = await $ ('#input-coupon');
-        await couponInput.setValue('LuckyUser');
-        const applyCouponButton = await $('#button-coupon');
-        await applyCouponButton.click();
+        await PhonePage.applyCoupon();
     });
 
     it ('should check that 15% discount is applied', async () => {
@@ -68,59 +50,27 @@ describe('Scenario2', () => {
     });
 
     it ('should click Checkout button', async () => {
-        const checkoutButton = await $('#content > div.buttons.clearfix > div.pull-right > a');
-        await checkoutButton.click();
+        await PhonePage.clickCheckoutButton();
     });
 
     it ('should select an option "I want to use a new address", fill the form and click Continue', async () => {
-        const newAddressButton = await $('label=I want to use a new address');
-        await newAddressButton.click();
-        const inputFirstName = await $('#input-payment-firstname');
-        await inputFirstName.setValue('Nadzeya');
-        const inputLastName = await $('#input-payment-lastname');
-        await inputLastName.setValue('Brazgouka');
-        const inputAddress1 = await $('#input-payment-address-1');
-        await inputAddress1.setValue('Kuprevicha 3V');
-        const inputCity = await $('#input-payment-city');
-        await inputCity.setValue('Minsk');
-        const countryDropdown = await $('#input-payment-country');
-        await countryDropdown.click();
-        const belarusValue = await $('//select[@id = "input-payment-country"]//option[@value = 20]');
-        await belarusValue.click();
-        const regionDropdown = await $('#input-payment-zone');
-        await regionDropdown.click();
-        const minskValue = await $('//select[@id = "input-payment-zone"]//option[@value = 339]');
-        await minskValue.click();
-        const continueButton1 = await $('#button-payment-address');
-        await continueButton1.click();
+        await PhonePage.fillFormWithNewAddress('Nadzeya', 'Brazgouka', 'Kuprevicha 3V', 'Minsk');
     });
 
     it ('should select option "I want to use an existing address" in delivery details and click Continue', async () => {
-        const existingAddressButton = await $('label=I want to use an existing address');
-        await existingAddressButton.click();
-        const continueButton2 = await $('#button-shipping-address');
-        await continueButton2.click(); 
+        await PhonePage.continueWithExistingAddress(); 
     });
 
     it ('should fill comment and click Continue', async () => {
-        const commentInput = await $('#collapse-shipping-method > div > p:nth-child(5) > textarea');
-        await commentInput.setValue('Billing address is changed');
-        const continueButton3 = await $('#button-shipping-method');
-        await continueButton3.click();
+        await PhonePage.continueWithComment('Billing address is changed');
     });
 
     it ('should select Cash&Delivery method, click Terms&conditions checkbox and click Continue', async () => {
-        const paymentMethodButton = await $('#collapse-payment-method > div > div:nth-child(3) > label');
-        await paymentMethodButton.click();
-        const conditionCheckbox = await $('#collapse-payment-method > div > div.buttons > div > input[type=checkbox]:nth-child(2)');
-        await conditionCheckbox.click();
-        const continueButton4 = await $('#button-payment-method');
-        await continueButton4.click();
+        await PhonePage.continueWithCashDeliveryMethodTermsCheckbox();
     });
 
     it ('should click Confirm order button', async () => {
-        const confirmButton = await $('#button-confirm');
-        await confirmButton.click();
+        await PhonePage.confirmOrder();
     });
 
     it ('should check message "Your order has been placed!"', async () => {
