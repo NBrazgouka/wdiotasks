@@ -1,8 +1,16 @@
 class Page {
 
-    open(baseUrl) {
-        return browser.url(baseUrl);
+    open() {
+        return browser.url('/');
       }
+
+    maximize() {
+      return browser.maximizeWindow();
+    }
+
+    close() {
+      return browser.closeWindow();
+    }
 }
 
 module.exports = Page;

@@ -1,41 +1,43 @@
 const Page = require('../../app/page-objects/page');
-const LoginPage = require('../../app/page-objects/login-page');
-const ProductPage = require('../../app/page-objects/product-page');
-const PhonePage = require('../../app/page-objects/phone-page');
+const loginPage = require('../../app/page-objects/login-page');
+const productPage = require('../../app/page-objects/product-page');
+const phonePage = require('../../app/page-objects/phone-page');
 
-describe('Scenario1', () => {
+describe('Scenario2', () => {
+
+    const page = new Page();
 
     it('should open awesome-shop site', async () => {
-       await Page.open();
-       browser.maximizeWindow();
+       await page.open();
+       await page.maximize();
     });
 
     it('should let user log in', async () => {
-       await LoginPage.loginUser('5768862@gmail.com', '159753');
+       await loginPage.loginUser('5768862@gmail.com', '159753');
     });
 
     it ('should return to home page', async () => {
-        await Page.open();
+        await page.open();
     });
 
     it ('should click iPhone item', async () => {
-        await PhonePage.openPhonePage();
+        await phonePage.openPhonePage();
     });
 
     it ('should add to Cart 7 phones', async () => {
-        await ProductPage.addQuantityToCart('7');
+        await productPage.addQuantityToCart('7');
     });
 
     it ('should open cart', async () => {
-        await ProductPage.viewCart();
+        await productPage.viewCart();
     });
 
     it ('should open toggle Use Coupon Code', async () => {
-        await PhonePage.openCouponToggle();
+        await phonePage.openCouponToggle();
     });
 
     it ('should apply coupon LuckyUser', async () => {
-        await PhonePage.applyCoupon();
+        await phonePage.applyCoupon();
     });
 
     it ('should check that 15% discount is applied', async () => {
@@ -45,48 +47,44 @@ describe('Scenario1', () => {
     });
 
     it ('should check message "Success: Your coupon discount has been applied!"', async () => {
-        const successMessage = await $('body');
-        await expect(successMessage).toHaveTextContaining('Success: Your coupon discount has been applied!');
+        await expect(phonePage.bodyMessage1).toHaveText('Success: Your coupon discount has been applied!');
     });
 
     it ('should click Checkout button', async () => {
-        await PhonePage.clickCheckoutButton();
+        await phonePage.clickCheckoutButton();
     });
 
     it ('should select an option "I want to use a new address", fill the form and click Continue', async () => {
-        await PhonePage.fillFormWithNewAddress('Nadzeya', 'Brazgouka', 'Kuprevicha 3V', 'Minsk');
+        await phonePage.fillFormWithNewAddress('Nadzeya', 'Brazgouka', 'Kuprevicha 3V', 'Minsk');
     });
 
     it ('should select option "I want to use an existing address" in delivery details and click Continue', async () => {
-        await PhonePage.continueWithExistingAddress(); 
+        await phonePage.continueWithExistingAddress(); 
     });
 
     it ('should fill comment and click Continue', async () => {
-        await PhonePage.continueWithComment('Billing address is changed');
+        await phonePage.continueWithComment('Billing address is changed');
     });
 
     it ('should select Cash&Delivery method, click Terms&conditions checkbox and click Continue', async () => {
-        await PhonePage.continueWithCashDeliveryMethodTermsCheckbox();
+        await phonePage.continueWithCashDeliveryMethodTermsCheckbox();
     });
 
     it ('should click Confirm order button', async () => {
-        await PhonePage.confirmOrder();
+        await phonePage.confirmOrder();
     });
 
     it ('should check message "Your order has been placed!"', async () => {
-        const successOrderMessage = await $('body');
-        await expect(successOrderMessage).toHaveTextContaining('Your order has been placed!');
+        await expect(phonePage.bodyMessage2).toHaveTextContaining('Your order has been placed!');
     });
 
     it ('should check order exists in order history', async () => {
-        const orderHistory = await $('#content > p:nth-child(3) > a:nth-child(2)');
-        await orderHistory.click();
-        const orderTable = await $('.table-responsive');
-        await expect(orderTable).toBePresent();
+        await phonePage.orderHistoryCheck();
+        await expect(phonePage.orderTable).toBePresent();
     })
 
-    it ('should close the browser', async () => {
-        await browser.closeWindow();
+    afterTest (async () => {
+        page.closeWindow();
     });
 
 }); 

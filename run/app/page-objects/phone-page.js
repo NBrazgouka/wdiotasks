@@ -1,7 +1,6 @@
-const { default: $ } = require('webdriverio/build/commands/element/$');
 const Page = require('./page');
 
-class PhonePage extends Page {
+class phonePage extends Page {
 
     get openPhone() {
         return $('=iPhone');
@@ -17,6 +16,10 @@ class PhonePage extends Page {
 
     get applyCouponButton() {
         return $('#button-coupon');
+    }
+
+    get bodyMessage1() {
+        return $('body');
     }
 
     get checkoutButton() {
@@ -95,6 +98,18 @@ class PhonePage extends Page {
         return $('#button-confirm');
     }
 
+    get bodyMessage2() {
+        return $('body');
+    }
+
+    get orderHistory() {
+        return $('#content > p:nth-child(3) > a:nth-child(2)');
+    }
+
+    get orderTable() {
+        return $('.table-responsive');
+    }
+
     open() {
         return super.open('/');
     }
@@ -149,6 +164,10 @@ class PhonePage extends Page {
         await this.confirmButton.click();
     }
 
+    async orderHistoryCheck() {
+        await this.orderHistory.click();
+    }
+
 }
 
-module.exports = new PhonePage();
+module.exports = new phonePage();

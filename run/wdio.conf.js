@@ -27,6 +27,10 @@ exports.config = {
     exclude: [
         './test/specs/**/scenario2.js'
     ],
+
+    featureFlags: {
+        specFiltering: true
+    },
     //
     // ============
     // Capabilities
@@ -117,7 +121,8 @@ exports.config = {
         outputDir: 'driver-logs', // overwrites the config.outputDir
         args: ['--silent'],
         chromedriverCustomPath: 'C:\\Users\\Nadzeya_Brazgouka\\Desktop\\Docs\\LEARN\\Automation\\WebDriverIO\\chromedriver_win32\\chromedriver.exe'
-    }]],
+    }]
+     ],
     
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -165,6 +170,7 @@ exports.config = {
      */
     // onPrepare: function (config, capabilities) {
     // },
+    
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
      * for that worker as well as modify runtime environments in an async fashion.

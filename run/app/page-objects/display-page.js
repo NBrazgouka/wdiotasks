@@ -1,6 +1,6 @@
 const Page = require('./page');
 
-class DisplayPage extends Page {
+class displayPage extends Page {
 
     get openDisplay() {
         return $('=Apple Cinema 30"');
@@ -32,6 +32,18 @@ class DisplayPage extends Page {
 
     get longTextInput() {
         return $('#input-option209');
+    }
+
+    get productNameColumn() {
+        return $('#content > form > div > table > tbody > tr > td:nth-child(2)');
+    }
+
+    get subTotalValue() {
+        return $('#content > div.row > div > table > tbody > tr:nth-child(1) > td:nth-child(1) > strong');
+    }
+
+    get vatValue() {
+        return $('#content > div.row > div > table > tbody > tr:nth-child(2) > td:nth-child(1)');
     }
 
     open() {
@@ -66,4 +78,4 @@ class DisplayPage extends Page {
 
 }
 
-module.exports = new DisplayPage();
+module.exports = new displayPage();

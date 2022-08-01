@@ -1,15 +1,14 @@
-const { default: $ } = require('webdriverio/build/commands/browser/$');
 const Page = require('./page');
 
-class LoginPage extends Page {
+class loginPage extends Page {
 
     get loginDropdown() {
-        return $('.acc-section');
+        return $('html > body > div:nth-of-type(1) > header > div > div > div:nth-of-type(2) > div:nth-of-type(3) > button > i');
     }
-
+   
     get loginLink() {
-        return $('=Login');
-    }
+       return $('=Login');
+    }    
 
     get emailInput() {
         return $('#input-email');
@@ -36,4 +35,4 @@ class LoginPage extends Page {
     }
 }
 
-module.exports = new LoginPage();
+module.exports = new loginPage();
