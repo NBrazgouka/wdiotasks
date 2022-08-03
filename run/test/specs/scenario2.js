@@ -41,9 +41,7 @@ describe('Scenario2', () => {
     });
 
     it ('should check that 15% discount is applied', async () => {
-        const subTotalValue = await $('#content > div.row > div > table > tbody > tr:nth-child(1) > td:nth-child(2)');
-        const discountValue = await $('#content > div.row > div > table > tbody > tr:nth-child(2) > td:nth-child(2)');
-        await discountValue.isEqual(subTotalValue * 0.15);
+        expect (await phonePage.getDiscountValue()).toEqual(phonePage.getSubTotalValue() * 0.15);
     });
 
     it ('should check message "Success: Your coupon discount has been applied!"', async () => {
@@ -83,8 +81,8 @@ describe('Scenario2', () => {
         await expect(phonePage.orderTable).toBePresent();
     })
 
-    afterTest (async () => {
-        page.closeWindow();
+    after (async () => {
+        page.close();
     });
 
 }); 

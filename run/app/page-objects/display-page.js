@@ -39,11 +39,11 @@ class displayPage extends Page {
     }
 
     get subTotalValue() {
-        return $('#content > div.row > div > table > tbody > tr:nth-child(1) > td:nth-child(1) > strong');
+        return $('#content > div.row > div > table > tbody > tr:nth-child(1) > td:nth-child(2)');
     }
 
     get vatValue() {
-        return $('#content > div.row > div > table > tbody > tr:nth-child(2) > td:nth-child(1)');
+        return $('#content > div.row > div > table > tbody > tr:nth-child(2) > td:nth-child(2)');
     }
 
     open() {
@@ -74,6 +74,16 @@ class displayPage extends Page {
 
     async pastLongText(value) {
         await this.longTextInput.setValue(value);
+    }
+
+    async getSubTotalValue() {
+        const subtotal = await this.subTotalValue;
+        return Number(subtotal.getText());
+    }
+
+    async getVatValue() {
+        const vat = await this.vatValue;
+        return Number(vat.getText());
     }
 
 }

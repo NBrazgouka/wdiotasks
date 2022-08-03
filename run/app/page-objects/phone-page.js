@@ -18,6 +18,14 @@ class phonePage extends Page {
         return $('#button-coupon');
     }
 
+    get subTotalValue() {
+        return $('#content > div.row > div > table > tbody > tr:nth-child(1) > td:nth-child(2)');
+    }
+
+    get discountValue() {
+        return $('#content > div.row > div > table > tbody > tr:nth-child(2) > td:nth-child(2)');
+    }
+
     get bodyMessage1() {
         return $('body');
     }
@@ -125,6 +133,16 @@ class phonePage extends Page {
     async applyCoupon(value) {
         await this.couponInput.setValue(value);
         await this.applyCouponButton.click();
+    }
+
+    async getSubTotalValue() {
+        const subtotal = await this.subTotalValue;
+        return Number(subtotal.getText());
+    }
+
+    async getDiscountValue() {
+        const discount = await this.discountValue;
+        return Number(discount.getText());
     }
 
     async clickCheckoutButton() {
