@@ -1,6 +1,6 @@
 const Page = require('./page');
 
-class productPage extends Page {
+class ProductPage extends Page {
 
     get inputQuantity() {
         return $('#input-quantity');
@@ -33,4 +33,4 @@ class productPage extends Page {
     }
 }
 
-module.exports = new productPage();
+module.exports = new ProductPage();

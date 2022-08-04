@@ -24,7 +24,7 @@ describe('Scenario1', () => {
     });
 
     it ('should paste short quote in Text option', async () => {
-        await displayPage.pastShortText('Short quote is added');
+        await displayPage.pasteShortText('Short quote is added');
     });
 
     it ('should select Green option in Select dropdown', async () => {
@@ -32,7 +32,7 @@ describe('Scenario1', () => {
     });
 
     it ('should paste long quote in TextArea option', async () => {
-        await displayPage.pastLongText('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.')
+        await displayPage.pasteLongText('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.')
     });
 
     it ('should add quantity 3 to cart', async () => {

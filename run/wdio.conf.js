@@ -22,11 +22,11 @@ exports.config = {
     //
     specs: [
         './test/specs/**/scenario1.js',
-        './test/specs/**/scenario2.js'
+        './test/specs/**/scenario2.js',
     ],
     // Patterns to exclude.
    exclude: [
-        
+    
     ],
 
     featureFlags: {

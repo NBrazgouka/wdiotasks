@@ -1,6 +1,6 @@
 const Page = require('./page');
 
-class displayPage extends Page {
+class DisplayPage extends Page {
 
     get openDisplay() {
         return $('=Apple Cinema 30"');
@@ -63,7 +63,7 @@ class displayPage extends Page {
         await this.checkboxOption4.click();
     }
 
-    async pastShortText(value) {
+    async pasteShortText(value) {
         await this.shortTextInput.setValue(value);
     }
 
@@ -72,7 +72,7 @@ class displayPage extends Page {
         await this.dropdownValue.click();
     }
 
-    async pastLongText(value) {
+    async pasteLongText(value) {
         await this.longTextInput.setValue(value);
     }
 
@@ -88,4 +88,4 @@ class displayPage extends Page {
 
 }
 
-module.exports = new displayPage();
+module.exports = new DisplayPage();

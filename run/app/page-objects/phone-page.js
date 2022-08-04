@@ -1,6 +1,6 @@
 const Page = require('./page');
 
-class phonePage extends Page {
+class PhonePage extends Page {
 
     get openPhone() {
         return $('=iPhone');
@@ -26,7 +26,7 @@ class phonePage extends Page {
         return $('#content > div.row > div > table > tbody > tr:nth-child(2) > td:nth-child(2)');
     }
 
-    get bodyMessage1() {
+    get messageCouponSuccess() {
         return $('body');
     }
 
@@ -46,7 +46,7 @@ class phonePage extends Page {
         return $('#input-payment-lastname');
     }
 
-    get inputAddress1() {
+    get inputPaymentAddress() {
         return $('#input-payment-address-1');
     }
 
@@ -70,7 +70,7 @@ class phonePage extends Page {
         return $('//select[@id = "input-payment-zone"]//option[@value = 339]');
     }
 
-    get continueButton1() {
+    get continuePaymentAddressButton() {
         return $('#button-payment-address');
     }
 
@@ -78,7 +78,7 @@ class phonePage extends Page {
         return $('label=I want to use an existing address');
     }
 
-    get continueButton2() {
+    get continueShippingAddressButton() {
         return $('#button-shipping-address');
     }
 
@@ -86,7 +86,7 @@ class phonePage extends Page {
         return $('#collapse-shipping-method > div > p:nth-child(5) > textarea');
     }
 
-    get continueButton3() {
+    get continueShippingMethodButton() {
         return $('#button-shipping-method');
     }
 
@@ -98,7 +98,7 @@ class phonePage extends Page {
         return $('#collapse-payment-method > div > div.buttons > div > input[type=checkbox]:nth-child(2)');
     }
 
-    get continueButton4() {
+    get continuePaymentMethodButton() {
         return $('#button-payment-method');
     }
 
@@ -106,7 +106,7 @@ class phonePage extends Page {
         return $('#button-confirm');
     }
 
-    get bodyMessage2() {
+    get messageOrderPlace() {
         return $('body');
     }
 
@@ -153,29 +153,29 @@ class phonePage extends Page {
         await this.newAddressButton.click();
         await this.inputFirstName.setValue(firstname);
         await this.inputLastName.setValue(lastname);
-        await this.inputAddress1.setValue(street);
+        await this.inputPaymentAddress.setValue(street);
         await this.inputCity.setValue(city);
         await this.countryDropdown.click();
         await this.belarusValue.click();
         await this.regionDropdown.click();
         await this.minskValue.click();
-        await this.continueButton1.click();
+        await this.continuePaymentAddressButton.click();
     }
 
     async continueWithExistingAddress() {
         await this.existingAddressButton.click();
-        await this.continueButton2.click();
+        await this.continueShippingAddressButton.click();
     }
 
     async continueWithComment(value) {
         await this.commentInput.setValue(value);
-        await this.continueButton3.click();
+        await this.continueShippingMethodButton.click();
     }
 
     async continueWithCashDeliveryMethodTermsCheckbox() {
         await this.paymentMethodButton.click();
         await this.conditionCheckbox.click();
-        await this.continueButton4.click();
+        await this.continuePaymentMethodButton.click();
     }
 
     async confirmOrder() {
@@ -188,4 +188,4 @@ class phonePage extends Page {
 
 }
 
-module.exports = new phonePage();
+module.exports = new PhonePage();

@@ -1,6 +1,6 @@
 const Page = require('./page');
 
-class loginPage extends Page {
+class LoginPage extends Page {
 
     get loginDropdown() {
         return $('html > body > div:nth-of-type(1) > header > div > div > div:nth-of-type(2) > div:nth-of-type(3) > button > i');
@@ -35,4 +35,4 @@ class loginPage extends Page {
     }
 }
 
-module.exports = new loginPage();
+module.exports = new LoginPage();

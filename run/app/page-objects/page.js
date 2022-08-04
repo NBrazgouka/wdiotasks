@@ -1,8 +1,8 @@
 class Page {
 
     open() {
-        return browser.url('/');
-      }
+      return browser.url('/');
+    }
 
     maximize() {
       return browser.maximizeWindow();
