@@ -48,7 +48,7 @@ describe('Scenario1', () => {
     });
 
     it ('should assert that VAT 20% is calculated correctly', async () => {
-        expect(await displayPage.getVatValue()).toEqual(displayPage.getSubTotalValue() * 0.20);
+        await expect(await displayPage.getVatValue()).toEqual(await displayPage.getSubTotalValue() * 0.20);
     });
 
     after (async () => {

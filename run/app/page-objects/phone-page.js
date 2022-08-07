@@ -27,7 +27,7 @@ class PhonePage extends Page {
     }
 
     get messageCouponSuccess() {
-        return $('body');
+        return $('.alert-success');
     }
 
     get checkoutButton() {
@@ -107,7 +107,7 @@ class PhonePage extends Page {
     }
 
     get messageOrderPlace() {
-        return $('body');
+        return $('h1');
     }
 
     get orderHistory() {
@@ -145,6 +145,11 @@ class PhonePage extends Page {
         return Number(discount.getText());
     }
 
+    async getSuccessMessage() {
+        const successMessage = await this.messageCouponSuccess;
+        return successMessage.getText();
+    }
+
     async clickCheckoutButton() {
         await this.checkoutButton.click();
     }
@@ -180,6 +185,11 @@ class PhonePage extends Page {
 
     async confirmOrder() {
         await this.confirmButton.click();
+    }
+
+    async getOrderMessage() {
+        const orderMessage = await this.messageOrderPlace;
+        return orderMessage.getText();
     }
 
     async orderHistoryCheck() {

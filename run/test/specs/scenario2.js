@@ -37,15 +37,15 @@ describe('Scenario2', () => {
     });
 
     it ('should apply coupon LuckyUser', async () => {
-        await phonePage.applyCoupon();
+        await phonePage.applyCoupon('LuckyUser');
     });
 
     it ('should check that 15% discount is applied', async () => {
-        expect (await phonePage.getDiscountValue()).toEqual(phonePage.getSubTotalValue() * 0.15);
+        await expect (await phonePage.getDiscountValue()).toEqual(await phonePage.getSubTotalValue() * 0.15);
     });
 
     it ('should check message "Success: Your coupon discount has been applied!"', async () => {
-        await expect(phonePage.messageCouponSuccess).toHaveText('Success: Your coupon discount has been applied!');
+        expect(await phonePage.getSuccessMessage()).toHaveTextContaining('Success: Your coupon discount has been applied!');
     });
 
     it ('should click Checkout button', async () => {
@@ -73,7 +73,7 @@ describe('Scenario2', () => {
     });
 
     it ('should check message "Your order has been placed!"', async () => {
-        await expect(phonePage.messageOrderPlace).toHaveTextContaining('Your order has been placed!');
+        expect(await phonePage.getOrderMessage()).toHaveTextContaining('Your order has been placed!');
     });
 
     it ('should check order exists in order history', async () => {
