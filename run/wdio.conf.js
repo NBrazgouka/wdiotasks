@@ -21,12 +21,17 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/scenario2.js'
+        './test/specs/**/scenario1.js',
+        
     ],
     // Patterns to exclude.
-    exclude: [
-        './test/specs/**/scenario1.js'
+   exclude: [
+    './test/specs/**/scenario2.js',
     ],
+
+    featureFlags: {
+        specFiltering: true
+    },
     //
     // ============
     // Capabilities
@@ -94,7 +99,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://localhost',
+    baseUrl: 'https://awesome-shop.ru/',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -111,7 +116,7 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: ['chromedriver'],
-    
+    //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks
@@ -133,9 +138,7 @@ exports.config = {
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: ['spec'],
-
-
-    
+  
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
@@ -158,6 +161,7 @@ exports.config = {
      */
     // onPrepare: function (config, capabilities) {
     // },
+    
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
      * for that worker as well as modify runtime environments in an async fashion.
