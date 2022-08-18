@@ -37,7 +37,7 @@ describe('Scenario2', () => {
     });
 
     it ('should apply coupon LuckyUser', async () => {
-        await phonePage.applyCoupon('LuckyUser');
+        await phonePage.setCouponValue('LuckyUser');
     });
 
     it ('should check that 15% discount is applied', async () => {

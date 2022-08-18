@@ -21,12 +21,12 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/scenario1.js',
+        './test/specs/**/scenario2.js',
         
     ],
     // Patterns to exclude.
    exclude: [
-    './test/specs/**/scenario2.js',
+    './test/specs/**/scenario1.js',
     ],
 
     featureFlags: {
@@ -102,7 +102,7 @@ exports.config = {
     baseUrl: 'https://awesome-shop.ru/',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 100000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response

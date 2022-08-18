@@ -130,9 +130,10 @@ class PhonePage extends Page {
         await this.couponToggle.click();
     }
 
-    async applyCoupon(value) {
+    async setCouponValue(value) {
         await this.couponInput.setValue(value);
-        await this.applyCouponButton.click();
+        await browser.keys('Tab');
+        await browser.keys('Enter');
     }
 
     async getSubTotalValue() {

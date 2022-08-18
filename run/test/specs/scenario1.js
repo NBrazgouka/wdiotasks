@@ -31,8 +31,8 @@ describe('Scenario1', () => {
         await displayPage.selectDropdownOption();
     });
 
-    it ('should paste long quote in TextArea option', async () => {
-        await displayPage.pasteLongText('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.')
+    it ('should paste long text in Textarea', async () => {
+        await displayPage.pasteLongText('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vulputate tempor lorem, ut pellentesque ex condimentum consectetur. Ut commodo purus metus, a congue orci dignissim eget. Sed malesuada a ligula vel accumsan. Vivamus tincidunt imperdiet nulla, non imperdiet tortor dignissim vitae.');
     });
 
     it ('should add quantity 3 to cart', async () => {

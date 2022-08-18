@@ -55,12 +55,16 @@ class DisplayPage extends Page {
     } 
 
     async selectRadioOption() {
-        await this.radioOption.click();
+        await browser.execute(function () {
+            document.querySelector('input[value = "6"]').click();
+        });
     }
-
+    
     async selectCheckboxOptions() {
-        await this.checkboxOption2.click();
-        await this.checkboxOption4.click();
+        await browser.execute(function () {
+            document.querySelector('input[value = "9"]').click();
+            document.querySelector('input[value = "11"]').click();
+        });
     }
 
     async pasteShortText(value) {
