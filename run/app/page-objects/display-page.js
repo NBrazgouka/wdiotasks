@@ -54,13 +54,23 @@ class DisplayPage extends Page {
         await this.openDisplay.click();
     } 
 
-    async selectRadioOption() {
-        await this.radioOption.click();
-    }
+    async getSelectRadioOption() {
+        await browser.executeAsync(function () {
+        const radioElement = document.querySelectorAll('#input-option218 > div:nth-child(2) > label > input[type=radio]');
+        return $(radioElement).click();
+    });
+}
 
+    
     async selectCheckboxOptions() {
-        await this.checkboxOption2.click();
-        await this.checkboxOption4.click();
+        await browser.executeAsync(function() {
+            const checkbox2 =  this.checkboxOption2;
+            const checkbox4 =  this.checkboxOption4;
+            const checkboxes = document.getElementsByClassName('checkbox');
+            for (i=0; i<checkboxes.length; i++) {
+                return checkbox2.checked = true;
+                  }
+        })
     }
 
     async pasteShortText(value) {
@@ -72,8 +82,14 @@ class DisplayPage extends Page {
         await this.dropdownValue.click();
     }
 
-    async pasteLongText(value) {
-        await this.longTextInput.setValue(value);
+    async imageDragAndDrop() {
+        const element = await this.imageDisplay;
+        const target = await this.longTextInput;
+        await element.waitForDisplayed();
+        await element.click();
+        await target.waitForDisplayed();
+        await element.dragAndDrop(target);
+        browser.pause(10000);
     }
 
     async getSubTotalValue() {

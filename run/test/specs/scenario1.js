@@ -16,7 +16,7 @@ describe('Scenario1', () => {
     });
 
     it('should select Medium in radio option', async () => {
-        await displayPage.selectRadioOption();
+        await displayPage.getSelectRadioOption();
     });
 
     it('should select checkbox 2, 4 in Checkbox option', async () => {
@@ -31,8 +31,8 @@ describe('Scenario1', () => {
         await displayPage.selectDropdownOption();
     });
 
-    it ('should paste long quote in TextArea option', async () => {
-        await displayPage.pasteLongText('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.')
+    it ('should drag and drop display image', async () => {
+        await displayPage.imageDragAndDrop();
     });
 
     it ('should add quantity 3 to cart', async () => {
