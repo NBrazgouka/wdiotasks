@@ -132,30 +132,8 @@ class PhonePage extends Page {
 
     async setCouponValue(value) {
         await this.couponInput.setValue(value);
-    }
-
-    async focusApplyCoupon() {
-        await browser.executeAsync("Focus Apply Coupon"),
-            function() {
-                const couponInputField = this.couponInput;
-                couponInputField.addEventListener('keydown', (event) => {
-                    if (event.keyCode == 9) {
-                        return applyCouponButton.focus();
-                    }
-                })
-            }
-    }
-
-    async clickApplyCoupon() {
-        await browser.executeAsync("Click Apply Coupon"),
-            function() {
-                const applyCoupon = this.applyCouponButton;
-                applyCoupon.addEventListener('keydown', (event) => {
-                    if (event.keyCode == 13) {
-                        return applyCouponButton.click();
-                    }
-                })
-            }
+        await browser.keys('Tab');
+        await browser.keys('Enter');
     }
 
     async getSubTotalValue() {
