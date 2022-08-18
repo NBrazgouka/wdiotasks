@@ -16,7 +16,7 @@ describe('Scenario1', () => {
     });
 
     it('should select Medium in radio option', async () => {
-        await displayPage.SelectRadioOption();
+        await displayPage.selectRadioOption();
     });
 
     it('should select checkbox 2, 4 in Checkbox option', async () => {

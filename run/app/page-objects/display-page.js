@@ -54,7 +54,7 @@ class DisplayPage extends Page {
         await this.openDisplay.click();
     } 
 
-    async SelectRadioOption() {
+    async selectRadioOption() {
         await browser.execute(function () {
             document.querySelector('input[value = "6"]').click();
         });
