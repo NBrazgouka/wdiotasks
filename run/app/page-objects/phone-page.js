@@ -75,7 +75,7 @@ class PhonePage extends Page {
     }
 
     get existingAddressButton() {
-        return $('label=I want to use an existing address');
+        return $('#collapse-shipping-address > div > form > div:nth-child(1) > label > input[type=radio]');
     }
 
     get continueShippingAddressButton() {
@@ -130,8 +130,8 @@ class PhonePage extends Page {
         await this.couponToggle.click();
     }
 
-    async setCouponValue(value) {
-        await this.couponInput.setValue(value);
+    async setCouponValue(coupon) {
+        await this.couponInput.setValue(coupon.lucky);;
         await browser.keys('Tab');
         await browser.keys('Enter');
     }
@@ -155,12 +155,12 @@ class PhonePage extends Page {
         await this.checkoutButton.click();
     }
 
-    async fillFormWithNewAddress(firstname, lastname, street, city) {
+    async fillFormWithNewAddress(user) {
         await this.newAddressButton.click();
-        await this.inputFirstName.setValue(firstname);
-        await this.inputLastName.setValue(lastname);
-        await this.inputPaymentAddress.setValue(street);
-        await this.inputCity.setValue(city);
+        await this.inputFirstName.setValue(user.firstname);
+        await this.inputLastName.setValue(user.lastname);
+        await this.inputPaymentAddress.setValue(user.street);
+        await this.inputCity.setValue(user.city);
         await this.countryDropdown.click();
         await this.belarusValue.click();
         await this.regionDropdown.click();
@@ -173,8 +173,8 @@ class PhonePage extends Page {
         await this.continueShippingAddressButton.click();
     }
 
-    async continueWithComment(value) {
-        await this.commentInput.setValue(value);
+    async continueWithComment(text) {
+        await this.commentInput.setValue(text.comment);
         await this.continueShippingMethodButton.click();
     }
 

@@ -26,11 +26,11 @@ class LoginPage extends Page {
         return super.open('/');
     }
 
-    async loginUser(email, password) {
+    async loginUser(user) {
         await this.loginDropdown.click();
         await this.loginLink.click();
-        await this.emailInput.setValue(email);
-        await this.passwordInput.setValue(password);
+        await this.emailInput.setValue(user.email);
+        await this.passwordInput.setValue(user.password);
         await this.loginButton.click();
     }
 }

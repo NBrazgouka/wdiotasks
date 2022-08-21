@@ -67,8 +67,8 @@ class DisplayPage extends Page {
         });
     }
 
-    async pasteShortText(value) {
-        await this.shortTextInput.setValue(value);
+    async pasteShortText(text) {
+        await this.shortTextInput.setValue(text.short);
     }
 
     async selectDropdownOption() {
@@ -76,8 +76,8 @@ class DisplayPage extends Page {
         await this.dropdownValue.click();
     }
 
-    async pasteLongText(value) {
-        await this.longTextInput.setValue(value);
+    async pasteLongText(text) {
+        await this.longTextInput.setValue(text.long);
     }
 
     async getSubTotalValue() {
