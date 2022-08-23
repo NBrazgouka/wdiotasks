@@ -1,4 +1,5 @@
 const Page = require('./page');
+const log = require('../utils/log');
 
 class DisplayPage extends Page {
 
@@ -51,16 +52,19 @@ class DisplayPage extends Page {
     }
 
     async openDisplayPage() {
+        log.info(`Opening display page`);
         await this.openDisplay.click();
     } 
 
     async selectRadioOption() {
+        log.info(`Selecting Medium radio option`);
         await browser.execute(function () {
             document.querySelector('input[value = "6"]').click();
         });
     }
     
     async selectCheckboxOptions() {
+        log.info(`Selecting checkbox 2 and checkbox 4`);
         await browser.execute(function () {
             document.querySelector('input[value = "9"]').click();
             document.querySelector('input[value = "11"]').click();
@@ -68,25 +72,30 @@ class DisplayPage extends Page {
     }
 
     async pasteShortText(text) {
+        log.debug(`Pasting short text: ${text.short}`);
         await this.shortTextInput.setValue(text.short);
     }
 
     async selectDropdownOption() {
+        log.debug(`Choosing Green value in Select dropdown`);
         await this.openDropdown.click();
         await this.dropdownValue.click();
     }
 
     async pasteLongText(text) {
+        log.debug(`Pasting long text: ${text.long}`);
         await this.longTextInput.setValue(text.long);
     }
 
     async getSubTotalValue() {
         const subtotal = await this.subTotalValue;
+        log.debug(`Subtotal value "${subtotal}" is "${Number}"`);
         return Number(subtotal.getText());
     }
 
     async getVatValue() {
         const vat = await this.vatValue;
+        log.debug(`Vat value "${vat}" is "${Number}"`)
         return Number(vat.getText());
     }
 

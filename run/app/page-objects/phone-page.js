@@ -1,4 +1,5 @@
 const Page = require('./page');
+const log = require('../utils/log');
 
 class PhonePage extends Page {
 
@@ -123,14 +124,17 @@ class PhonePage extends Page {
     }
 
     async openPhonePage() {
+        log.info(`Opening phone page`);
         await this.openPhone.click();
     }
 
     async openCouponToggle() {
+        log.debug(`Opening coupon toggle`);
         await this.couponToggle.click();
     }
 
     async setCouponValue(coupon) {
+        log.warn(`Coupon value is case sensitive`);
         await this.couponInput.setValue(coupon.lucky);;
         await browser.keys('Tab');
         await browser.keys('Enter');
@@ -138,24 +142,29 @@ class PhonePage extends Page {
 
     async getSubTotalValue() {
         const subtotal = await this.subTotalValue;
+        log.debug(`Subtotal value "${subtotal}" is "${Number}"`);
         return Number(subtotal.getText());
     }
 
     async getDiscountValue() {
         const discount = await this.discountValue;
+        log.debug(`Discount value "${discount}" is "${Number}"`);
         return Number(discount.getText());
     }
 
     async getSuccessMessage() {
         const successMessage = await this.messageCouponSuccess;
+        log.debug(`Displaying "${successMessage}" message`);
         return successMessage.getText();
     }
 
     async clickCheckoutButton() {
+        log.info(`Clicking checkout button`);
         await this.checkoutButton.click();
     }
 
     async fillFormWithNewAddress(user) {
+        log.debug(`Filling from with new "${user}" address`);
         await this.newAddressButton.click();
         await this.inputFirstName.setValue(user.firstname);
         await this.inputLastName.setValue(user.lastname);
@@ -169,31 +178,37 @@ class PhonePage extends Page {
     }
 
     async continueWithExistingAddress() {
+        log.info(`Clicking Continue button after filling form with new address`);
         await this.existingAddressButton.click();
         await this.continueShippingAddressButton.click();
     }
 
     async continueWithComment(text) {
+        log.debug(`Pasting comment: ${text.comment}`);
         await this.commentInput.setValue(text.comment);
         await this.continueShippingMethodButton.click();
     }
 
     async continueWithCashDeliveryMethodTermsCheckbox() {
+        log.debug(`Continue after choosing Cash&Delivery method`);
         await this.paymentMethodButton.click();
         await this.conditionCheckbox.click();
         await this.continuePaymentMethodButton.click();
     }
 
     async confirmOrder() {
+        log.debug(`Confirming order`);
         await this.confirmButton.click();
     }
 
     async getOrderMessage() {
         const orderMessage = await this.messageOrderPlace;
+        log.error(`"${orderMessage}" is not displayed`);
         return orderMessage.getText();
     }
 
     async orderHistoryCheck() {
+        log.info(`Checking order history`);
         await this.orderHistory.click();
     }
 

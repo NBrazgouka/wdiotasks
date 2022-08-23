@@ -10,5 +10,8 @@
     "main": "index.js",
     "scripts": {
         "test": "wdio run wdio.conf.js"
+    },
+    "dependencies": {
+        "winston": "^3.8.1"
     }
 }

@@ -1,4 +1,5 @@
 const Page = require('./page');
+const log = require('../utils/log');
 
 class LoginPage extends Page {
 
@@ -27,6 +28,7 @@ class LoginPage extends Page {
     }
 
     async loginUser(user) {
+        log.debug(`User ${user} log in`);
         await this.loginDropdown.click();
         await this.loginLink.click();
         await this.emailInput.setValue(user.email);
