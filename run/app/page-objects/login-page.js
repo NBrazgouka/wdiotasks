@@ -28,7 +28,7 @@ class LoginPage extends Page {
     }
 
     async loginUser(user) {
-        log.debug(`User ${user} log in`);
+        log.debug(`User ${user.lastname} log in`);
         await this.loginDropdown.click();
         await this.loginLink.click();
         await this.emailInput.setValue(user.email);

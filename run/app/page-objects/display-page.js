@@ -52,19 +52,19 @@ class DisplayPage extends Page {
     }
 
     async openDisplayPage() {
-        log.info(`Opening display page`);
+        log.info('Opening display page');
         await this.openDisplay.click();
     } 
 
     async selectRadioOption() {
-        log.info(`Selecting Medium radio option`);
+        log.info('Selecting Medium radio option');
         await browser.execute(function () {
             document.querySelector('input[value = "6"]').click();
         });
     }
     
     async selectCheckboxOptions() {
-        log.info(`Selecting checkbox 2 and checkbox 4`);
+        log.info('Selecting checkbox 2 and checkbox 4');
         await browser.execute(function () {
             document.querySelector('input[value = "9"]').click();
             document.querySelector('input[value = "11"]').click();
@@ -77,7 +77,7 @@ class DisplayPage extends Page {
     }
 
     async selectDropdownOption() {
-        log.debug(`Choosing Green value in Select dropdown`);
+        log.debug('Choosing Green value in Select dropdown');
         await this.openDropdown.click();
         await this.dropdownValue.click();
     }
@@ -89,13 +89,13 @@ class DisplayPage extends Page {
 
     async getSubTotalValue() {
         const subtotal = await this.subTotalValue;
-        log.debug(`Subtotal value "${subtotal}" is "${Number}"`);
+        log.debug('Subtotal value is 513$');
         return Number(subtotal.getText());
     }
 
     async getVatValue() {
         const vat = await this.vatValue;
-        log.debug(`Vat value "${vat}" is "${Number}"`)
+        log.debug('Vat value is 102.6$')
         return Number(vat.getText());
     }
 

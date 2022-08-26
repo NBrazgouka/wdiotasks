@@ -24,13 +24,13 @@ class ProductPage extends Page {
     }
 
     async addQuantityToCart(quantity) {
-        log.debug(`Adding quantity of product to shopping cart`);
+        log.debug('Adding quantity of product to shopping cart');
         await this.inputQuantity.setValue(quantity);
         await this.addToCartButton.click();
     }
 
     async viewCart() {
-        log.debug(`Opening shopping cart`);
+        log.debug('Opening shopping cart');
         await this.shoppingCartButton.click();
         await this.viewCartButton.click();
     }

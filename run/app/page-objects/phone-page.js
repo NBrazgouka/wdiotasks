@@ -124,47 +124,47 @@ class PhonePage extends Page {
     }
 
     async openPhonePage() {
-        log.info(`Opening phone page`);
+        log.info('Opening phone page');
         await this.openPhone.click();
     }
 
     async openCouponToggle() {
-        log.debug(`Opening coupon toggle`);
+        log.debug('Opening coupon toggle');
         await this.couponToggle.click();
     }
 
     async setCouponValue(coupon) {
-        log.warn(`Coupon value is case sensitive`);
-        await this.couponInput.setValue(coupon.lucky);;
+        log.warn('Coupon value is case sensitive');
+        await this.couponInput.setValue(coupon.lucky);
         await browser.keys('Tab');
         await browser.keys('Enter');
     }
 
     async getSubTotalValue() {
         const subtotal = await this.subTotalValue;
-        log.debug(`Subtotal value "${subtotal}" is "${Number}"`);
+        log.debug('Subtotal value is 707$');
         return Number(subtotal.getText());
     }
 
     async getDiscountValue() {
         const discount = await this.discountValue;
-        log.debug(`Discount value "${discount}" is "${Number}"`);
+        log.debug('Discount value is 106.05$');
         return Number(discount.getText());
     }
 
     async getSuccessMessage() {
         const successMessage = await this.messageCouponSuccess;
-        log.debug(`Displaying "${successMessage}" message`);
+        log.debug('Displaying success message');
         return successMessage.getText();
     }
 
     async clickCheckoutButton() {
-        log.info(`Clicking checkout button`);
+        log.info('Clicking checkout button');
         await this.checkoutButton.click();
     }
 
     async fillFormWithNewAddress(user) {
-        log.debug(`Filling from with new "${user}" address`);
+        log.debug(`Filling from with new ${[user.lastname]} address`);
         await this.newAddressButton.click();
         await this.inputFirstName.setValue(user.firstname);
         await this.inputLastName.setValue(user.lastname);
@@ -178,7 +178,7 @@ class PhonePage extends Page {
     }
 
     async continueWithExistingAddress() {
-        log.info(`Clicking Continue button after filling form with new address`);
+        log.info('Clicking Continue button after filling form with new address');
         await this.existingAddressButton.click();
         await this.continueShippingAddressButton.click();
     }
@@ -190,25 +190,25 @@ class PhonePage extends Page {
     }
 
     async continueWithCashDeliveryMethodTermsCheckbox() {
-        log.debug(`Continue after choosing Cash&Delivery method`);
+        log.debug('Continue after choosing Cash&Delivery method');
         await this.paymentMethodButton.click();
         await this.conditionCheckbox.click();
         await this.continuePaymentMethodButton.click();
     }
 
     async confirmOrder() {
-        log.debug(`Confirming order`);
+        log.debug('Confirming order');
         await this.confirmButton.click();
     }
 
     async getOrderMessage() {
         const orderMessage = await this.messageOrderPlace;
-        log.error(`"${orderMessage}" is not displayed`);
+        log.error('Order message is not displayed');
         return orderMessage.getText();
     }
 
     async orderHistoryCheck() {
-        log.info(`Checking order history`);
+        log.info('Checking order history');
         await this.orderHistory.click();
     }
 
