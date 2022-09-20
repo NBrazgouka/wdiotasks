@@ -45,7 +45,9 @@ describe('Scenario2', () => {
     });
 
     it ('should check that 15% discount is applied', async () => {
-        await expect (await phonePage.getDiscountValue()).toEqual(await phonePage.getSubTotalValue() * 0.15);
+        const subTotal = await phonePage.getSubTotalValue() * 0.15;
+        const discount = await phonePage.getDiscountValue();
+        await expect(discount.toFixed(2)).toEqual(subTotal.toFixed(2));
     });
 
     it ('should check message "Success: Your coupon discount has been applied!"', async () => {

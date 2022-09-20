@@ -88,15 +88,15 @@ class DisplayPage extends Page {
     }
 
     async getSubTotalValue() {
-        const subtotal = await this.subTotalValue;
-        log.debug('Subtotal value is 513$');
-        return Number(subtotal.getText());
+        const subtotal = await this.subTotalValue.getText();
+        log.debug('Subtotal value is ' + subtotal);
+        return Number(subtotal.substring(1));
     }
 
     async getVatValue() {
-        const vat = await this.vatValue;
-        log.debug('Vat value is 102.6$')
-        return Number(vat.getText());
+        const vat = await this.vatValue.getText();
+        log.debug('Vat value is ' + vat);
+        return Number(vat.substring(1));
     }
 
 }

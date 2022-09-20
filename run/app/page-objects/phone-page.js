@@ -141,15 +141,15 @@ class PhonePage extends Page {
     }
 
     async getSubTotalValue() {
-        const subtotal = await this.subTotalValue;
-        log.debug('Subtotal value is 707$');
-        return Number(subtotal.getText());
+        const subtotal = await this.subTotalValue.getText();
+        log.debug('Subtotal value is ' + subtotal);
+        return Number(subtotal.substring(1));
     }
 
     async getDiscountValue() {
-        const discount = await this.discountValue;
-        log.debug('Discount value is 106.05$');
-        return Number(discount.getText());
+        const discount = await this.discountValue.getText();
+        log.debug('Discount value is ' + discount);
+        return -(Number(discount.substring(1)));
     }
 
     async getSuccessMessage() {
