@@ -1,4 +1,5 @@
 const Page = require('./page');
+const log = require('../utils/log');
 
 class DisplayPage extends Page {
 
@@ -51,43 +52,51 @@ class DisplayPage extends Page {
     }
 
     async openDisplayPage() {
+        log.info('Opening display page');
         await this.openDisplay.click();
     } 
 
     async selectRadioOption() {
+        log.info('Selecting Medium radio option');
         await browser.execute(function () {
             document.querySelector('input[value = "6"]').click();
         });
     }
     
     async selectCheckboxOptions() {
+        log.info('Selecting checkbox 2 and checkbox 4');
         await browser.execute(function () {
             document.querySelector('input[value = "9"]').click();
             document.querySelector('input[value = "11"]').click();
         });
     }
 
-    async pasteShortText(value) {
-        await this.shortTextInput.setValue(value);
+    async pasteShortText(text) {
+        log.debug(`Pasting short text: ${text.short}`);
+        await this.shortTextInput.setValue(text.short);
     }
 
     async selectDropdownOption() {
+        log.debug('Choosing Green value in Select dropdown');
         await this.openDropdown.click();
         await this.dropdownValue.click();
     }
 
-    async pasteLongText(value) {
-        await this.longTextInput.setValue(value);
+    async pasteLongText(text) {
+        log.debug(`Pasting long text: ${text.long}`);
+        await this.longTextInput.setValue(text.long);
     }
 
     async getSubTotalValue() {
-        const subtotal = await this.subTotalValue;
-        return Number(subtotal.getText());
+        const subtotal = await this.subTotalValue.getText();
+        log.debug('Subtotal value is ' + subtotal);
+        return Number(subtotal.substring(1));
     }
 
     async getVatValue() {
-        const vat = await this.vatValue;
-        return Number(vat.getText());
+        const vat = await this.vatValue.getText();
+        log.debug('Vat value is ' + vat);
+        return Number(vat.substring(1));
     }
 
 }

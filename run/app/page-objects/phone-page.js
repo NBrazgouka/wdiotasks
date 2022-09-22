@@ -1,4 +1,5 @@
 const Page = require('./page');
+const log = require('../utils/log');
 
 class PhonePage extends Page {
 
@@ -75,7 +76,7 @@ class PhonePage extends Page {
     }
 
     get existingAddressButton() {
-        return $('label=I want to use an existing address');
+        return $('#collapse-shipping-address > div > form > div:nth-child(1) > label > input[type=radio]');
     }
 
     get continueShippingAddressButton() {
@@ -123,44 +124,52 @@ class PhonePage extends Page {
     }
 
     async openPhonePage() {
+        log.info('Opening phone page');
         await this.openPhone.click();
     }
 
     async openCouponToggle() {
+        log.debug('Opening coupon toggle');
         await this.couponToggle.click();
     }
 
-    async setCouponValue(value) {
-        await this.couponInput.setValue(value);
+    async setCouponValue(coupon) {
+        log.warn('Coupon value is case sensitive');
+        await this.couponInput.setValue(coupon.lucky);
         await browser.keys('Tab');
         await browser.keys('Enter');
     }
 
     async getSubTotalValue() {
-        const subtotal = await this.subTotalValue;
-        return Number(subtotal.getText());
+        const subtotal = await this.subTotalValue.getText();
+        log.debug('Subtotal value is ' + subtotal);
+        return Number(subtotal.substring(1));
     }
 
     async getDiscountValue() {
-        const discount = await this.discountValue;
-        return Number(discount.getText());
+        const discount = await this.discountValue.getText();
+        log.debug('Discount value is ' + discount);
+        return -(Number(discount.substring(1)));
     }
 
     async getSuccessMessage() {
         const successMessage = await this.messageCouponSuccess;
+        log.debug('Displaying success message');
         return successMessage.getText();
     }
 
     async clickCheckoutButton() {
+        log.info('Clicking checkout button');
         await this.checkoutButton.click();
     }
 
-    async fillFormWithNewAddress(firstname, lastname, street, city) {
+    async fillFormWithNewAddress(user) {
+        log.debug(`Filling from with new ${[user.lastname]} address`);
         await this.newAddressButton.click();
-        await this.inputFirstName.setValue(firstname);
-        await this.inputLastName.setValue(lastname);
-        await this.inputPaymentAddress.setValue(street);
-        await this.inputCity.setValue(city);
+        await this.inputFirstName.setValue(user.firstname);
+        await this.inputLastName.setValue(user.lastname);
+        await this.inputPaymentAddress.setValue(user.street);
+        await this.inputCity.setValue(user.city);
         await this.countryDropdown.click();
         await this.belarusValue.click();
         await this.regionDropdown.click();
@@ -169,31 +178,37 @@ class PhonePage extends Page {
     }
 
     async continueWithExistingAddress() {
+        log.info('Clicking Continue button after filling form with new address');
         await this.existingAddressButton.click();
         await this.continueShippingAddressButton.click();
     }
 
-    async continueWithComment(value) {
-        await this.commentInput.setValue(value);
+    async continueWithComment(text) {
+        log.debug(`Pasting comment: ${text.comment}`);
+        await this.commentInput.setValue(text.comment);
         await this.continueShippingMethodButton.click();
     }
 
     async continueWithCashDeliveryMethodTermsCheckbox() {
+        log.debug('Continue after choosing Cash&Delivery method');
         await this.paymentMethodButton.click();
         await this.conditionCheckbox.click();
         await this.continuePaymentMethodButton.click();
     }
 
     async confirmOrder() {
+        log.debug('Confirming order');
         await this.confirmButton.click();
     }
 
     async getOrderMessage() {
         const orderMessage = await this.messageOrderPlace;
+        log.error('Order message is not displayed');
         return orderMessage.getText();
     }
 
     async orderHistoryCheck() {
+        log.info('Checking order history');
         await this.orderHistory.click();
     }
 

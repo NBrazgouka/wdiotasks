@@ -1,6 +1,8 @@
 const Page = require('../../app/page-objects/page');
 const productPage = require('../../app/page-objects/product-page');
 const displayPage = require('../../app/page-objects/display-page');
+const quantity = require('../../app/business-objects/quantity');
+const text = require('../../app/business-objects/text');
 
 describe('Scenario1', () => {
 
@@ -24,19 +26,19 @@ describe('Scenario1', () => {
     });
 
     it ('should paste short quote in Text option', async () => {
-        await displayPage.pasteShortText('Short quote is added');
+        await displayPage.pasteShortText(text);
     });
 
     it ('should select Green option in Select dropdown', async () => {
         await displayPage.selectDropdownOption();
     });
 
-    it ('should paste long text in Textarea', async () => {
-        await displayPage.pasteLongText('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vulputate tempor lorem, ut pellentesque ex condimentum consectetur. Ut commodo purus metus, a congue orci dignissim eget. Sed malesuada a ligula vel accumsan. Vivamus tincidunt imperdiet nulla, non imperdiet tortor dignissim vitae.');
+    it ('should paste long quote in TextArea option', async () => {
+        await displayPage.pasteLongText(text);
     });
 
     it ('should add quantity 3 to cart', async () => {
-        await productPage.addQuantityToCart('3'); 
+        await productPage.addQuantityToCart(quantity.display); 
     });
 
     it ('should open cart', async () => {
@@ -48,7 +50,9 @@ describe('Scenario1', () => {
     });
 
     it ('should assert that VAT 20% is calculated correctly', async () => {
-        await expect(await displayPage.getVatValue()).toEqual(await displayPage.getSubTotalValue() * 0.20);
+        const vat = await displayPage.getVatValue();
+        const subTotal = await displayPage.getSubTotalValue() * 0.2;
+        await expect(vat.toFixed(2)).toEqual(subTotal.toFixed(2));
     });
 
     after (async () => {

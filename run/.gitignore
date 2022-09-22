@@ -4,3 +4,4 @@ coverage
 mochawesome-report
 .vscode
 driver-logs
+*log
