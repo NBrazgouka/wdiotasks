@@ -1,9 +1,14 @@
+const { options } = require("yargs");
+
 exports.config = {
     //
     // ====================
     // Runner Configuration
     // ====================
     //
+    hostname: 'localhost',
+    port: 4444,
+    path: '/',
     //
     // ==================
     // Specify Test Files
@@ -21,12 +26,12 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/scenario2.js',
+        './test/specs/**/scenario1.js',
         
     ],
     // Patterns to exclude.
    exclude: [
-    './test/specs/**/scenario1.js',
+    './test/specs/**/scenario2.js',
     ],
 
     featureFlags: {
@@ -59,9 +64,9 @@ exports.config = {
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
-        maxInstances: 5,
+        maxInstances: options.threads,
         //
-        browserName: 'chrome',
+        browserName: options.browser,
         acceptInsecureCerts: true
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
@@ -115,7 +120,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'],
+    services: ['chromedriver', 'selenium-standalone', 'firefox-profile'],
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
