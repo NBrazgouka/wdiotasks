@@ -6,9 +6,6 @@ exports.config = {
     // Runner Configuration
     // ====================
     //
-    hostname: 'localhost',
-    port: 4444,
-    path: '/',
     //
     // ==================
     // Specify Test Files
@@ -26,12 +23,12 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/scenario1.js',
+        './test/specs/**/scenario2.js',
         
     ],
     // Patterns to exclude.
    exclude: [
-    './test/specs/**/scenario2.js',
+    './test/specs/**/scenario1.js',
     ],
 
     featureFlags: {
@@ -120,7 +117,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver', 'selenium-standalone', 'firefox-profile'],
+    services: [['selenium-standalone', { drivers: { firefox: true, chrome: true} }]],
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
