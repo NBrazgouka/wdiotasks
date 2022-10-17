@@ -1,14 +1,13 @@
 const UserBuilder = require ('../utils/user-builder');
 const UserFactory = require ('../utils/user-factory');
 
-const user = new UserBuilder ({
-    firstname: 'Nadzeya',
-    lastname: 'Brazgouka',
-    street: 'Kuprevicha 3V',
-    city: 'Minsk'
-});
+const user = new UserBuilder().
+  setCity('Minsk').
+  setAddress('Kuprevicha 3V').
+  setFirstName('Nadzeya').
+  setLastName('Brazgouka').
+  build();
 
 const defaultUser = UserFactory.getDefaultUser();
 
-module.exports = user;
-module.exports = defaultUser;
+module.exports = { user, defaultUser };

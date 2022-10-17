@@ -1,6 +1,5 @@
 const Page = require('./page');
 const log = require('../utils/log');
-const UserBuilder = require('../utils/user-builder');
 
 class LoginPage extends Page {
 
@@ -29,11 +28,11 @@ class LoginPage extends Page {
     }
 
     async loginUser(user) {
-        log.debug(`User ${user} log in`);
+        log.debug(`User ${user.lastName} log in`);
         await this.loginDropdown.click();
         await this.loginLink.click();
-        await this.emailInput.setValue(user);
-        await this.passwordInput.setValue(user);
+        await this.emailInput.setValue(user.email);
+        await this.passwordInput.setValue(user.password);
         await this.loginButton.click();
     }
 }
