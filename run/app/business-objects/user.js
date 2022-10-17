@@ -8,10 +8,7 @@ const user = new UserBuilder ({
     city: 'Minsk'
 });
 
-const defaultUser = new UserFactory ({
-    email: UserFactory.getDefaultUser(),
-    password: UserFactory.getDefaultUser()
-});
+const defaultUser = UserFactory.getDefaultUser();
 
 module.exports = user;
 module.exports = defaultUser;
