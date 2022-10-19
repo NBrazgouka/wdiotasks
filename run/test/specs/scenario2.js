@@ -2,7 +2,7 @@ const Page = require('../../app/page-objects/page');
 const loginPage = require('../../app/page-objects/login-page');
 const productPage = require('../../app/page-objects/product-page');
 const phonePage = require('../../app/page-objects/phone-page');
-const user = require('../../app/business-objects/user');
+const {user, defaultUser} = require('../../app/business-objects/user');
 const quantity = require('../../app/business-objects/quantity');
 const coupon = require('../../app/business-objects/coupon');
 const text = require('../../app/business-objects/text');
@@ -17,7 +17,7 @@ describe('Scenario2', () => {
     });
 
     it('should let user log in', async () => {
-        await loginPage.loginUser(user);
+        await loginPage.loginUser(defaultUser);
      });
 
     it ('should return to home page', async () => {
