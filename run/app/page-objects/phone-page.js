@@ -164,11 +164,11 @@ class PhonePage extends Page {
     }
 
     async fillFormWithNewAddress(user) {
-        log.debug(`Filling from with new ${[user.lastname]} address`);
+        log.debug(`Filling from with new ${[user.firstName]} address`);
         await this.newAddressButton.click();
-        await this.inputFirstName.setValue(user.firstname);
-        await this.inputLastName.setValue(user.lastname);
-        await this.inputPaymentAddress.setValue(user.street);
+        await this.inputFirstName.setValue(user.firstName);
+        await this.inputLastName.setValue(user.lastName);
+        await this.inputPaymentAddress.setValue(user.address);
         await this.inputCity.setValue(user.city);
         await this.countryDropdown.click();
         await this.belarusValue.click();

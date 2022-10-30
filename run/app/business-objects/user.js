@@ -1,10 +1,13 @@
-const user = {
-    email: '5768862@gmail.com',
-    password: '159753',
-    firstname: 'Nadzeya',
-    lastname: 'Brazgouka',
-    street: 'Kuprevicha 3V',
-    city: 'Minsk'
-};
+const UserBuilder = require ('../utils/user-builder');
+const UserFactory = require ('../utils/user-factory');
 
-module.exports = user;
+const user = new UserBuilder().
+  setCity('Minsk').
+  setAddress('Kuprevicha 3V').
+  setFirstName('Nadzeya').
+  setLastName('Brazgouka').
+  build();
+
+const defaultUser = UserFactory.getDefaultUser();
+
+module.exports = { user, defaultUser };
