@@ -12,6 +12,6 @@ Scenario: Verify selected values are applied and VAT is calculated correctly
     When I paste long quote in TextArea option
     When I add quantity 3 to cart
     When I open cart
-    Then selected values are applied
+    Then Selected values are applied
     Then VAT 20% is calculated correctly
     Then page is closed
